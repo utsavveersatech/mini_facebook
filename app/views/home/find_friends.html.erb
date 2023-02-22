@@ -1,0 +1,5 @@
+<% if @users %>
+  <% for user in @users %>
+    <%= user.email %> <span> <%= link_to "Send Request", addFriends_path(id: user.id) %></span><br />
+  <% end %>
+<% end %>

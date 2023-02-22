@@ -1,0 +1,3 @@
+<% for friend in @followings %>
+  <%= friend.email %> <span><%= link_to "Unfriend", unfriend_path(following_id: friend.id), data: {confirm: 'are you sure'}%></span><br />
+<% end %>
