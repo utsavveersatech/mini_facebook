@@ -1,24 +1,18 @@
 class HomeController < ApplicationController
+  
+  # def find_friends
+  #   user = User.all()
+  #   following = current_user.followings
+  #   @users = user - following - [current_user]
+  # end
 
-  def index
-    if current_user
-      puts current_user.email
-    end
-  end
-
-  def find_friends
-    user = User.all()
-    following = current_user.followings
-    @users = user - following - [current_user]
-  end
-
-  def add_friends
-    user = User.find(params[:id])
-    rel = Relationship.new(follower_id: current_user.id, following_id: params[:id], request_approved: false)
-    if rel.save
-      redirect_to findFriends_path
-    end
-  end
+  # def add_friends
+  #   user = User.find(params[:id])
+  #   rel = Relationship.new(follower_id: current_user.id, following_id: params[:id], request_approved: false)
+  #   if rel.save
+  #     redirect_to findFriends_path
+  #   end
+  # end
 
   def get_followings
     # @followings = current_user.followings
@@ -36,25 +30,25 @@ class HomeController < ApplicationController
     @followers = follower
   end
 
-  def friend_request
-    requests = Relationship.where(following_id: current_user.id, request_approved: false)
-    @requests = []
-    requests.each { |r| @requests.append(r.follower)}
-  end
+  # def friend_request
+  #   requests = Relationship.where(following_id: current_user.id, request_approved: false)
+  #   @requests = []
+  #   requests.each { |r| @requests.append(r.follower)}
+  # end
 
-  def accept_request
-    request = Relationship.where(follower_id: params[:follower_id], following_id: current_user.id, request_approved: false)
-    if request.update(request_approved: true)
-      redirect_to friendRequest_path
-    end
-  end
+  # def accept_request
+  #   request = Relationship.where(follower_id: params[:follower_id], following_id: current_user.id, request_approved: false)
+  #   if request.update(request_approved: true)
+  #     redirect_to friendRequest_path
+  #   end
+  # end
 
-  def reject_request
-    request = Relationship.where(follower_id: params[:follower_id], following_id: current_user.id, request_approved: false)
-    if Relationship.destroy(request.ids)
-      redirect_to friendRequest_path
-    end
-  end
+  # def reject_request
+  #   request = Relationship.where(follower_id: params[:follower_id], following_id: current_user.id, request_approved: false)
+  #   if Relationship.destroy(request.ids)
+  #     redirect_to friendRequest_path
+  #   end
+  # end
 
   def unfriend
     friend = Relationship.where(follower_id: current_user.id, following_id: params[:following_id], request_approved: true)

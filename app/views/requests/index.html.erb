@@ -1,0 +1,7 @@
+<% if @requests %>
+  <% for request in @requests %>
+    <%= request.email %> 
+    <span> <%= link_to "Accept", request_path(id: request.id), method: :patch %></span> 
+    <span> <%= link_to "Reject", request_path(id: request.id), method: :delete%></span><br />
+  <% end %>
+<% end %>

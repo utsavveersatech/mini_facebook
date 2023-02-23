@@ -1,0 +1,9 @@
+<% for post in @posts %>
+<h3><%= post.users[0].email%></h3>
+  <b><%= post.title %></b>
+  <% if post.imageUrl %>
+    <img src="<%= post.imageUrl %>">
+  <% end %>
+  <p><%= post.description %></p>
+  
+<% end %>

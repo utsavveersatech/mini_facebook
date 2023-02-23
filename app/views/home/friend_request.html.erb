@@ -1,7 +1,0 @@
-<% if @requests %>
-  <% for request in @requests %>
-    <%= request.email %> 
-    <span> <%= link_to "Accept", acceptRequest_path(follower_id: request.id) %></span> 
-    <span> <%= link_to "Reject", rejectRequest_path(follower_id: request.id), method: :delete%></span><br />
-  <% end %>
-<% end %>
