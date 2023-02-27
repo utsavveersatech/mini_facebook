@@ -1,43 +1,31 @@
 class RequestsController < ApplicationController
 
-  # def friend_request
-  #   requests = Relationship.where(following_id: current_user.id, request_approved: false)
-  #   @requests = []
-  #   requests.each { |r| @requests.append(r.follower)}
-  # end
-
-  # def accept_request
-  #   request = Relationship.where(follower_id: params[:follower_id], following_id: current_user.id, request_approved: false)
-  #   if request.update(request_approved: true)
-  #     redirect_to friendRequest_path
-  #   end
-  # end
-
-  # def reject_request
-  #   request = Relationship.where(follower_id: params[:follower_id], following_id: current_user.id, request_approved: false)
-  #   if Relationship.destroy(request.ids)
-  #     redirect_to friendRequest_path
-  #   end
-  # end
+  before_action :set_request, only: %i[update destroy]
 
   def index
-    requests = Relationship.where(following_id: current_user.id, request_approved: false)
-    @requests = []
-    requests.each { |r| @requests.append(r.follower)}
+    # requests = Relationship.where(following_id: current_user.id, request_approved: false)
+    # @requests = []
+    # requests.each { |r| @requests.append(r.follower)}
+    @requests = Relationship.joins(:follower).where("following_id=?  and request_approved =false",current_user.id)
+    @requests = @requests.map { |user| user.follower}
   end
 
   def update
-    request = Relationship.where(follower_id: params[:id], following_id: current_user.id, request_approved: false)
-    if request.update(request_approved: true)
+    if @request.update(request_approved: true)
       render "index"
     end
   end
 
   def destroy
-    request = Relationship.where(follower_id: params[:id], following_id: current_user.id, request_approved: false)
-    if Relationship.destroy(request.ids)
+    if Relationship.destroy(@request.ids)
       render "index"
     end
   end
+
+  private 
+
+    def set_request
+      @request = Relationship.where(follower_id: params[:id], following_id: current_user.id, request_approved: false)
+    end
 
 end

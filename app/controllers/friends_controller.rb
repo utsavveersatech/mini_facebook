@@ -18,6 +18,7 @@ class FriendsController < ApplicationController
     requests = Relationship.where(following_id: current_user.id, request_approved: false)
     @requests = []
     requests.each { |r| @requests.append(r.follower)}
+    # user = User.joins(:relationship).where(following_id: current_user.id)
   end
 
   def accept_request

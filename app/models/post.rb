@@ -1,4 +1,4 @@
 class Post < ApplicationRecord
-  has_many :userposts
-  has_many :users, through: :userposts
+  # has_many :userposts
+  belongs_to :user
 end

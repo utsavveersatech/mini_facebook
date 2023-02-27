@@ -28,19 +28,19 @@
               <%= link_to "Find Friends", friends_path, class: "nav-link active" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Following ", getFollowings_path, class: "nav-link active" %>
+              <%= link_to "Following ", get_followings_path, class: "nav-link active" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Followers", getFollowers_path, class: "nav-link active" %>
+              <%= link_to "Followers", get_followers_path, class: "nav-link active" %>
             </li>
             <li class="nav-item">
               <%= link_to "Friend Requests", requests_path, class: "nav-link active" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link active" %>
+              <%= link_to "Create Post", new_post_path, class: "nav-link active" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Create Post", new_post_path, class: "nav-link active" %>
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link active text-danger" %>
             </li>
           </ul>
         </div>

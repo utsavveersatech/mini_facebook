@@ -1,9 +1,26 @@
 <% for post in @posts %>
-<h3><%= post.users[0].email%></h3>
-  <b><%= post.title %></b>
-  <% if post.imageUrl %>
-    <img src="<%= post.imageUrl %>">
-  <% end %>
-  <p><%= post.description %></p>
-  
+  <div>
+    <span>
+      <h3>
+        <%= post.user.email%>
+      </h3>
+      <b>
+        <%= post.title %>
+      </b>
+      <% if post.imageUrl %>
+        <img src="<%= post.imageUrl %>">
+      <% end %>
+      <p>
+        <%= post.description %>
+      </p>
+    </span>
+    <% if post.user.id == current_user.id %>
+      <span>
+        <%= link_to "Delete Post", post_path(id: post.id), method: :delete %>
+      </span>
+      <span>
+        <%= link_to "Edit Post", edit_post_path(id: post.id) %>
+      </span>
+    <% end %>
+  </div>
 <% end %>
