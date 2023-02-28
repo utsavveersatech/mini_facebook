@@ -40,8 +40,12 @@
               <%= link_to "Create Post", new_post_path, class: "nav-link active" %>
             </li>
             <li class="nav-item">
+              <%= link_to "My Post", my_post_path, class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
               <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link active text-danger" %>
             </li>
+            
           </ul>
         </div>
       </div>

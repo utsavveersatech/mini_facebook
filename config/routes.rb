@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root to: "posts#index"
 
   devise_for :users
@@ -11,5 +13,6 @@ Rails.application.routes.draw do
   get 'get_followers', to: "home#get_followers"
   get 'unfriend', to: "home#unfriend"
   delete 'unfriend', to: "home#unfriend"
+  get 'my_post', to: "posts#my_post"
 
 end

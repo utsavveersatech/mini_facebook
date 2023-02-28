@@ -14,26 +14,27 @@ class FriendsController < ApplicationController
     end
   end
 
-  def friend_request
-    requests = Relationship.where(following_id: current_user.id, request_approved: false)
-    @requests = []
-    requests.each { |r| @requests.append(r.follower)}
-    # user = User.joins(:relationship).where(following_id: current_user.id)
-  end
+  # def friend_request
+  #   requests = Relationship.where(following_id: current_user.id, request_approved: false)
+  #   @requests = []
+  #   requests.each { |r| @requests.append(r.follower)}
+  #   # user = User.joins(:relationship).where(following_id: current_user.id)
+  # end
 
-  def accept_request
-    request = Relationship.where(follower_id: params[:follower_id], following_id: current_user.id, request_approved: false)
-    if request.update(request_approved: true)
-      redirect_to friendRequest_path
-    end
-  end
+  # def accept_request
+  #   request = Relationship.where(follower_id: params[:follower_id], following_id: current_user.id, request_approved: false)
+  #   if request.update(request_approved: true)
+  #     redirect_to friendRequest_path
+  #   end
+  # end
 
-  def reject_request
-    request = Relationship.where(follower_id: params[:follower_id], following_id: current_user.id, request_approved: false)
-    if Relationship.destroy(request.ids)
-      redirect_to friendRequest_path
-    end
-  end
+  # def reject_request
+  #   # request = Relationship.where(follower_id: params[:follower_id], following_id: current_user.id, request_approved: false)
+  #   request = Friend.request(params[:follower_id])
+  #   if Relationship.destroy(request.ids)
+  #     redirect_to friendRequest_path
+  #   end
+  # end
 
 
 end

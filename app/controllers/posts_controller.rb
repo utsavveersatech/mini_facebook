@@ -35,20 +35,25 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.update(title: params[:post][:title], description: params[:post][:description], imageUrl: params[:imageUrl])
     if @post.save
-      redirect_to posts_path
+      redirect_to my_post_path
     end
   end
 
   # delete post
   def destroy
-    post = Post.find(params[:id])
+    # post = Post.find(params[:id])
+    post = Post.find_post(params[:id])
     if post.destroy
-      redirect_to root_path
+      redirect_to my_post_path
     end
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.find_post(params[:id])
+  end
+
+  def my_post
+    @posts = Post.where(user_id: current_user.id)
   end
 
 end
